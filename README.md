@@ -1,1 +1,1 @@
-# api-produtos
+# products-api
