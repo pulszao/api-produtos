@@ -30,10 +30,10 @@ class Products(APIView):
 
             create_new_product(serializer.validated_data)
 
-            return JsonResponse({'message': 'Produto criado com sucesso', 'status': status.HTTP_201_CREATED})
+            return JsonResponse({'message': 'Produto criado com sucesso'}, status=status.HTTP_201_CREATED)
 
         else:
-            return JsonResponse({'message': serializer.errors, 'status': status.HTTP_400_BAD_REQUEST})
+            return JsonResponse({'message': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProductData(APIView):
@@ -48,7 +48,7 @@ class ProductData(APIView):
             return JsonResponse(data, safe=False)
 
         except ProductDTO.DoesNotExist:
-            return JsonResponse({'message': 'Produto não encontrado', 'status': status.HTTP_404_NOT_FOUND})
+            return JsonResponse({'message': 'Produto não encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request, product_id):
         """
@@ -62,13 +62,13 @@ class ProductData(APIView):
             try:
                 update_product_data(serializer.validated_data, product_id)
 
-                return JsonResponse({'message': 'Produto editado com sucesso', 'status': status.HTTP_201_CREATED})
+                return JsonResponse({'message': 'Produto editado com sucesso'}, status=status.HTTP_201_CREATED)
 
             except ProductDTO.DoesNotExist:
-                return JsonResponse({'message': 'Produto não encontrado', 'status': status.HTTP_404_NOT_FOUND})
+                return JsonResponse({'message': 'Produto não encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
         else:
-            return JsonResponse({'message': serializer.errors, 'status': status.HTTP_400_BAD_REQUEST})
+            return JsonResponse({'message': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, product_id):
         """
@@ -78,7 +78,7 @@ class ProductData(APIView):
         try:
             delete_product(product_id)
 
-            return JsonResponse({'message': 'Produto excluído com sucesso', 'status': status.HTTP_204_NO_CONTENT})
+            return JsonResponse({'message': 'Produto excluído com sucesso'}, status=status.HTTP_204_NO_CONTENT)
 
         except ProductDTO.DoesNotExist:
-            return JsonResponse({'message': 'Produto não encontrado', 'status': status.HTTP_404_NOT_FOUND})
+            return JsonResponse({'message': 'Produto não encontrado'}, status=status.HTTP_404_NOT_FOUND)

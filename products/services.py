@@ -36,12 +36,12 @@ def get_product_data(product_id):
     product = ProductDTO.objects.get(id=product_id)
 
     data = {
-            'name': product.name,
-            'price': product.price,
-            'description': product.description,
-            'inStock': product.inStock,
-            'quantity': product.quantity,
-        }
+        'name': product.name,
+        'price': product.price,
+        'description': product.description,
+        'inStock': product.inStock,
+        'quantity': product.quantity,
+    }
 
     return data
 
